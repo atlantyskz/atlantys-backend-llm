@@ -1,0 +1,30 @@
+services:
+
+  # Service: Gateway
+  gateway_service:
+    build: ./gateway_service
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./gateway_service:/gateway_service
+    environment:
+      XI_API_KEY: ${XI_API_KEY}
+    networks:
+      - app_network
+
+  # Service: LLM
+  llm_service:
+    build: ./llm_service
+    ports:
+      - "8001:8001"
+    volumes:
+      - ./llm_service:/llm_service
+    environment:
+      OPENAI_API_KEY: ${OPENAI_API_KEY}
+      OPENROUTER_BASE_URL: ${OPENROUTER_BASE_URL}
+    networks:
+      - app_network
+
+networks:
+  app_network:
+    driver: bridge  
