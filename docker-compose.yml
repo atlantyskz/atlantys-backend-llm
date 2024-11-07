@@ -1,30 +1,36 @@
 services:
-
   # Service: Gateway
   gateway_service:
-    build: ./gateway_service
+    build:
+      context: ./gateway_service
+      dockerfile: Dockerfile
     ports:
       - "8000:8000"
     volumes:
-      - ./gateway_service:/gateway_service
+      - ./gateway_service:/app  # Монтируем локальную директорию в контейнер
     environment:
-      XI_API_KEY: ${XI_API_KEY}
+      XI_API_KEY: "${XI_API_KEY}"  
+      MONGO_DB_URI: "${MONGO_DB_URI}"  
     networks:
       - app_network
-
+    depends_on:
+      - llm_service
+    
   # Service: LLM
   llm_service:
-    build: ./llm_service
+    build:
+      context: ./llm_service
+      dockerfile: Dockerfile
     ports:
       - "8001:8001"
     volumes:
-      - ./llm_service:/llm_service
+      - ./llm_service:/app  # Монтируем локальную директорию в контейнер
     environment:
-      OPENAI_API_KEY: ${OPENAI_API_KEY}
-      OPENROUTER_BASE_URL: ${OPENROUTER_BASE_URL}
+      OPENAI_API_KEY: "${OPENAI_API_KEY}"
+      OPENROUTER_BASE_URL: "${OPENROUTER_BASE_URL}"
     networks:
       - app_network
 
 networks:
   app_network:
-    driver: bridge  
+    driver: bridge

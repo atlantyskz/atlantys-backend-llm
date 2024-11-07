@@ -1,10 +1,10 @@
 from fastapi import APIRouter,Depends
-from services.llm import LLMService,get_service as get_llm_service
-from services.extractor import UrlExtractorService,get_service as get_url_extractor_service
-from schemas.podcast import PodcastRequestDTO
-from prompts.demo_podcast_system_prompt import get_demo_podcast_system_prompt
+from  src.services.llm import LLMService,get_service as get_llm_service
+from  src.services.extractor import UrlExtractorService,get_service as get_url_extractor_service
+from  src.schemas.podcast import PodcastRequestDTO
+from  src.prompts.demo_podcast_system_prompt import get_demo_podcast_system_prompt
 
-llm_router = APIRouter()
+llm_router = APIRouter(prefix="/podcast",tags=["Podcast"])
 
 @llm_router.get("/")
 async def get_llm():

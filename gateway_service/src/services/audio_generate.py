@@ -2,7 +2,7 @@ import os
 import tempfile
 from elevenlabs import VoiceSettings
 from elevenlabs.client import ElevenLabs
-from configs.enums import SPEAKER_VOICE_ENUM
+from  src.core.enums import SPEAKER_VOICE_ENUM
 from pydub import AudioSegment
 from shortuuid import uuid
 

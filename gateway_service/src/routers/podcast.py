@@ -1,9 +1,8 @@
 from fastapi import APIRouter,Depends
 from fastapi.responses import FileResponse
-from services.audio_generate import AudioGenerateService,get_service as get_audio_generate_service
-from services.podcast import PodcastService,get_service as get_podcast_service
-from schemas.podcast import PodcastRequestDTO
-from prompts.demo_podcast_system_prompt import get_demo_podcast_system_prompt
+from  src.services.audio_generate import AudioGenerateService,get_service as get_audio_generate_service
+from  src.services.podcast import PodcastService,get_service as get_podcast_service
+from  src.schemas.podcast import PodcastRequestDTO
 
 gateway_router = APIRouter()
 

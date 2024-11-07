@@ -5,4 +5,4 @@ class SPEAKER_VOICE_ENUM(Enum):
     Enum for speaker voices
     """
     FemaleSpeakerVoiceID = "cgSgspJ2msm6clMCkdW9"
-    MaleSpeakerVoiceID  = "nPczCjzI2devNBz1zQrb"
+    MaleSpeakerVoiceID  = "PGKcNbNFBvaNXUCi2fgx"

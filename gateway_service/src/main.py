@@ -1,13 +1,18 @@
-from fastapi import FastAPI
-from routers.podcast import gateway_router
+from uuid import uuid4
+from fastapi import FastAPI, WebSocket
+from src.core.store import lifespan
+from src.routers.chat import chat_router
+from src.routers.podcast import gateway_router
 
 
 def create_app() -> FastAPI:
-    app = FastAPI()
+    app = FastAPI(lifespan=lifespan)
+    app.include_router(chat_router)
     app.include_router(gateway_router)
     return app
 
 app = create_app()
+
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run('main:app', host="0.0.0.0", port=8000, reload=True)

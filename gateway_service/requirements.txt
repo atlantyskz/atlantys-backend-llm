@@ -5,3 +5,4 @@ elevenlabs==1.12.1
 pydub==0.25.1 
 ffmpeg==1.4 
 shortuuid
+beanie==1.27.0 
