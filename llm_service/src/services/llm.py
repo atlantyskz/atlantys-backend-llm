@@ -8,7 +8,7 @@ from  src.core.logger import get_logger
 
 class LLMService():
     def __init__(self):
-        self.openai = AsyncOpenAI(api_key='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',base_url='https://openrouter.ai/api/v1')
+        self.openai = AsyncOpenAI(api_key=os.getenv("OPENAI_API_KEY"),base_url=os.getenv('OPENROUTER_BASE_URL'),)
         self.logger = get_logger("llm_service") 
 
     async def generate_response(self, message: dict, system_prompt: str):
