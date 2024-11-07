@@ -71,10 +71,4 @@ jobs:
           # Pull the latest images
           docker pull ${{ secrets.DOCKER_USERNAME }}/gateway_service:latest
           docker pull ${{ secrets.DOCKER_USERNAME }}/llm_service:latest
-
-          # Stop and remove old containers
-          docker-compose -f /path/to/remote/docker-compose.yml down
-
-          # Run new containers
-          docker-compose -f /path/to/remote/docker-compose.yml up -d
         EOF
