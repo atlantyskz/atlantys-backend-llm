@@ -6,9 +6,9 @@ from  src.schemas.podcast import PodcastRequestDTO
 
 gateway_router = APIRouter()
 
-@gateway_router.get("/")
-async def get_llm():
-    return {"message": "Hello, World!"}
+@gateway_router.get("/health-check")
+async def health_check():
+    return {"message": "Hello, World from Gateway Service!"}
 
 @gateway_router.post("/generate-audio-podcast")
 async def generate_audio_podcast(data:PodcastRequestDTO,
