@@ -61,8 +61,8 @@ def create_app(create_custom_static_urls: bool = False) -> FastAPI:
         lifespan=lifespan,
         docs_url=None if create_custom_static_urls else '/docs',
         redoc_url=None if create_custom_static_urls else '/redoc',
-        openapi_url="/openapi.json"  
-        )
+        openapi_url="/api/openapi.json"  
+    )
     app.add_middleware(
         CORSMiddleware,
         allow_origins=["*"],
@@ -75,7 +75,11 @@ def create_app(create_custom_static_urls: bool = False) -> FastAPI:
 
     if create_custom_static_urls:
         register_static_docs_routers(app)
-    
+    else:
+        @app.get("/api/openapi.json", include_in_schema=False)
+        async def get_openapi_json():
+            schema = app.openapi()
+            return JSONResponse(content=schema)
     app.openapi = custom_openapi
     return app
 
