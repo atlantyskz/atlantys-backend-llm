@@ -27,7 +27,7 @@ def custom_openapi():
     return app.openapi_schema
 
 def register_static_docs_routers(app: FastAPI):
-    @app.get("/api/docs", include_in_schema=False)
+    @app.get("/docs", include_in_schema=False)
     async def custom_swagger_ui_html():
         return get_swagger_ui_html(
                 openapi_url=app.openapi_url,
@@ -41,7 +41,7 @@ def register_static_docs_routers(app: FastAPI):
     async def swagger_ui_redirect():
         return get_swagger_ui_oauth2_redirect_html()
 
-    @app.get("/api/redoc", include_in_schema=False)
+    @app.get("/redoc", include_in_schema=False)
     async def redoc_html():
         return get_redoc_html(
             openapi_url=app.openapi_url,
@@ -49,7 +49,7 @@ def register_static_docs_routers(app: FastAPI):
             redoc_js_url="https://cdn.jsdelivr.net/npm/redoc@2.0.0-rc.55/bundles/redoc.standalone.js",
         )
 
-    @app.get("/api/openapi.json", include_in_schema=False)
+    @app.get("/openapi.json", include_in_schema=False)
     async def get_openapi_json():
         schema = app.openapi()
         print(f"OpenAPI schema requested. Schema size: {len(str(schema))} characters")
@@ -59,9 +59,9 @@ def create_app(create_custom_static_urls: bool = False) -> FastAPI:
     app = FastAPI(
         title="Gateway Service",
         lifespan=lifespan,
-        docs_url=None if create_custom_static_urls else '/api/docs',
-        redoc_url=None if create_custom_static_urls else '/api/redoc',
-        openapi_url="/api/openapi.json"  
+        docs_url=None if create_custom_static_urls else '/docs',
+        redoc_url=None if create_custom_static_urls else '/redoc',
+        openapi_url="/openapi.json"  
         )
     app.add_middleware(
         CORSMiddleware,
