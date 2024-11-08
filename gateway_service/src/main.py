@@ -49,7 +49,7 @@ def register_static_docs_routers(app: FastAPI):
             redoc_js_url="https://cdn.jsdelivr.net/npm/redoc@2.0.0-rc.55/bundles/redoc.standalone.js",
         )
 
-    @app.get("/openapi.json", include_in_schema=False)
+    @app.get("api/openapi.json", include_in_schema=False)
     async def get_openapi_json():
         schema = app.openapi()
         print(f"OpenAPI schema requested. Schema size: {len(str(schema))} characters")
