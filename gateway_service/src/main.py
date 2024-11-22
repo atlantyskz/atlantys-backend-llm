@@ -60,8 +60,8 @@ def create_app(create_custom_static_urls: bool = False) -> FastAPI:
     app = FastAPI(
         title="Gateway Service",
         lifespan=lifespan,
-        docs_url=None if create_custom_static_urls else '/docs',
-        redoc_url=None if create_custom_static_urls else '/redoc',
+        docs_url=None if create_custom_static_urls else '/api/docs',
+        redoc_url=None if create_custom_static_urls else '/api/redoc',
         openapi_url="/api/openapi.json"  
     )
     app.add_middleware(
