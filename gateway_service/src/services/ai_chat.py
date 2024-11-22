@@ -35,7 +35,8 @@ class AiChatService:
 
     async def get_chat_history(self, session_id: str):
         chat_history = await ChatDialogueHistory.find_one(ChatDialogueHistory.session_id == session_id,projection_model=ChatSummaryView)
-        return  chat_history
+        print(chat_history)
+        return chat_history
         
     async def summarize_chat_history(self, session_id: str):
         chat_history = await self.get_chat_history(session_id)

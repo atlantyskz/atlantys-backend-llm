@@ -11,6 +11,7 @@ from fastapi.openapi.utils import get_openapi
 from src.core.store import lifespan
 from src.routers.chat import chat_router
 from src.routers.podcast import gateway_router
+from src.routers.booking import booking_router
 
 
 
@@ -72,6 +73,7 @@ def create_app(create_custom_static_urls: bool = False) -> FastAPI:
     )
     app.include_router(chat_router)
     app.include_router(gateway_router)
+    app.include_router(booking_router)
 
     if create_custom_static_urls:
         register_static_docs_routers(app)

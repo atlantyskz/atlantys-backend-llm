@@ -1,51 +1,62 @@
-from abc import ABC, abstractmethod
-from typing import List, Dict, Optional
+import os
 from google.oauth2 import service_account
 from googleapiclient.discovery import build
-
-class IAuthManager(ABC):
-    @abstractmethod
-    def get_service(self):
-        pass
-
-
-class GoogleAuthManager(IAuthManager):
-    def __init__(self, key_file: str, user_email: str, scopes: List[str]):
-        credentials = service_account.Credentials.from_service_account_file(key_file, scopes=scopes)
-        self.delegated_credentials = credentials.with_subject(user_email)
-
-    def get_service(self):
-        return build('calendar', 'v3', credentials=self.delegated_credentials)
-
+from abc import ABC, abstractmethod
+from dotenv import load_dotenv
 
 class IEventCreator(ABC):
     @abstractmethod
-    def create_event(self, calendar_id: str, event_data: Dict) -> str:
+    async def create_event(self, event_data: dict):
         pass
-
 
 class IEventReader(ABC):
     @abstractmethod
-    def get_events(self, calendar_id: str) -> List[Dict]:
+    def get_event(self, event_id: str):
         pass
 
     @abstractmethod
-    def get_event(self, calendar_id: str, event_id: str) -> Optional[Dict]:
+    def get_events(self):
         pass
 
+class CalendarManager(IEventReader, IEventCreator):
+    load_dotenv()
 
-class CalendarManager(IEventCreator, IEventReader):
-    def __init__(self, auth_manager: IAuthManager):
-        self.service = auth_manager.get_service()
+    GOOGLE_KEY_FILE = os.getenv("GOOGLE_KEY_FILE")
+    GOOGLE_USER_EMAIL = os.getenv("GOOGLE_USER_EMAIL")
+    SCOPES = [os.getenv('GOOGLE_SCOPES_CALENDAR'),os.getenv('GOOGLE_SCOPES_CALENDAR_EVENTS')]
+    calendarId = os.getenv('GOOGLE_CALENDAR_ID')
 
-    def create_event(self, calendar_id: str, event_data: Dict) -> str:
-        event = self.service.events().insert(calendarId=calendar_id, body=event_data).execute()
+    def __init__(self):
+        credentials = service_account.Credentials.from_service_account_file(self.GOOGLE_KEY_FILE, scopes=self.SCOPES)
+        delegated_credentials = credentials.with_subject(self.GOOGLE_USER_EMAIL)
+        self.service = build('calendar', 'v3', credentials=delegated_credentials)
+
+    def create_event(self, event_data: dict):
+        attendees = [{"email": email} for email in event_data.get('attendees', [])]
+        event_data['attendees'] = attendees
+
+        event_data['reminders'] = {
+            "useDefault": False,  
+            "overrides": [
+                {"method": "email", "minutes": 1440},  
+                {"method": "email", "minutes": 60},    
+            ]
+        }
+
+        event = self.service.events().insert(
+            calendarId=self.calendarId,
+            body=event_data,
+            sendNotifications=True  
+        ).execute()
+
         return event.get("htmlLink")
 
-    def get_events(self, calendar_id: str) -> List[Dict]:
-        events = self.service.events().list(calendarId=calendar_id).execute()
+    def get_events(self):
+        events = self.service.events().list(calendarId=self.calendarId).execute()
         return events.get("items", [])
 
-    def get_event(self, calendar_id: str, event_id: str) -> Optional[Dict]:
-        event = self.service.events().get(calendarId=calendar_id, eventId=event_id).execute()
+    def get_event(self, event_id: str):
+        event = self.service.events().get(calendarId=self.calendarId, eventId=event_id).execute()
         return event
+
+

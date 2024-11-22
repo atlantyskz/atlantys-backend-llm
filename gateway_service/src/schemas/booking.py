@@ -1,9 +1,24 @@
-from pydantic import BaseModel
+from datetime import datetime
+from typing import List
+from pydantic import BaseModel, EmailStr
+
+
+class EventDateTime(BaseModel):
+    dateTime: datetime
+    timeZone: str = "Asia/Almaty"  
+
+
+    class Config:
+        from_attributes = True
 
 class Event(BaseModel):
     summary: str
     location: str
     description: str
-    start: str  # Формат '2024-11-15T09:00:00-07:00'
-    end: str    # Формат '2024-11-15T10:00:00-07:00'
-    timeZone: str = "Asia/Almaty"
+    start: EventDateTime
+    end: EventDateTime
+    attendees: List[EmailStr]  
+
+
+    class Config:
+        from_attributes = True

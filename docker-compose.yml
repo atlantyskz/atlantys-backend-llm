@@ -8,9 +8,8 @@ services:
       - "8000:8000"
     volumes:
       - ./gateway_service:/app  # Монтируем локальную директорию в контейнер
-    environment:
-      XI_API_KEY: "${XI_API_KEY}"  
-      MONGO_DB_URI: "${MONGO_DB_URI}"  
+    env_file:
+      - .env    # Указываем файл с переменными окружения
     networks:
       - app_network
     depends_on:
@@ -25,9 +24,8 @@ services:
       - "8001:8001"
     volumes:
       - ./llm_service:/app  # Монтируем локальную директорию в контейнер
-    environment:
-      OPENAI_API_KEY: "${OPENAI_API_KEY}"
-      OPENROUTER_BASE_URL: "${OPENROUTER_BASE_URL}"
+    env_file:
+      - .env  # Указываем файл с переменными окружения
     networks:
       - app_network
 
