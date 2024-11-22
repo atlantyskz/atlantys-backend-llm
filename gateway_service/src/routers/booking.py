@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 from src.schemas.booking import Event
 from src.services.booking import CalendarManager
-booking_router = APIRouter()
+booking_router = APIRouter(prefix='/api')
 
 @booking_router.post('/create-event')
 async def create_event(event_data: Event):

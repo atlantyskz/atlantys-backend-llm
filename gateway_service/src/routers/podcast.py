@@ -4,7 +4,7 @@ from  src.services.audio_generate import AudioGenerateService,get_service as get
 from  src.services.podcast import PodcastService,get_service as get_podcast_service
 from  src.schemas.podcast import PodcastRequestDTO
 
-gateway_router = APIRouter()
+gateway_router = APIRouter(prefix='/api')
 
 @gateway_router.get("/health-check")
 async def health_check():

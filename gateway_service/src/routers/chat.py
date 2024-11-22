@@ -4,7 +4,7 @@ import datetime
 from src.models.chat import ChatDialogueHistory, Message
 from src.services.ai_chat import AiChatService, get_service as get_ai_chat_service
 
-chat_router = APIRouter()
+chat_router = APIRouter(prefix='/api')
 
 @chat_router.websocket("/ws/chat")
 async def websocket_endpoint(
