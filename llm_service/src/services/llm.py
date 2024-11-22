@@ -3,18 +3,20 @@ import json
 from fastapi import HTTPException
 from openai import AsyncOpenAI
 from  src.core.logger import get_logger
-
+from dotenv import load_dotenv
 
 
 class LLMService():
     def __init__(self):
-        self.openai = AsyncOpenAI(api_key=os.getenv("OPENAI_API_KEY"),base_url=os.getenv('OPENROUTER_BASE_URL'),)
+        load_dotenv()
+        self.openai = AsyncOpenAI(api_key=os.getenv("OPENAI_API_KEY"),base_url=os.getenv("OPENROUTER_BASE_URL"),)
         self.logger = get_logger("llm_service") 
+        print(os.getenv("OPENAI_API_KEY"))
 
     async def generate_response(self, message: dict, system_prompt: str):
         try:
             response = await self.openai.chat.completions.create(
-                model='openai/chatgpt-4o-latest',
+                model='openai/gpt-4o-mini-2024-07-18',
                 messages=[
                     {
                         "role": "system",

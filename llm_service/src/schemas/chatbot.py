@@ -8,3 +8,9 @@ class ChatbotRequestDTO(BaseModel):
 
     class Config:
         from_attributes = True
+
+class ChatHistoryReviewRequestDTO(BaseModel):
+    history_context: List[dict]
+
+    class Config:
+        from_attributes = True

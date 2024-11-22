@@ -61,3 +61,9 @@ async def websocket_endpoint(
     finally:
         await websocket.send_text("Connection closed")
         await websocket.close()
+
+
+@chat_router.get("/chat-history/{session_id}/summary")
+async def get_chat_history(session_id: str, ai_chat_service: AiChatService = Depends(get_ai_chat_service)):
+    summary = await ai_chat_service.summarize_chat_history(session_id)
+    return summary

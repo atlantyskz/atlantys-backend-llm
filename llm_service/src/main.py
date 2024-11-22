@@ -4,7 +4,7 @@ from src.routers.chatbot import chatbot_router
 
 
 def create_app() -> FastAPI:
-    app = FastAPI()
+    app = FastAPI(title='LLM Service')
     app.include_router(chatbot_router)
     app.include_router(llm_router)
     return app

@@ -39,3 +39,4 @@ jobs:
           file: ./llm_service/Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/llm_service:latest
+          

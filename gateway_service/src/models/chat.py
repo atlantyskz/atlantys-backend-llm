@@ -27,3 +27,4 @@ class ChatDialogueHistory(Document):
         self.messages.append(new_message)
         self.updated_at = datetime.datetime.now()
         await self.save()  
+
