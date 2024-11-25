@@ -18,7 +18,8 @@ class AiChatService:
             try:
                 self.logger.info("Generating chatbot response...")
                 response = await client.post(llm_endpoint, json=message)
-                self.logger.info(f"Response generated successfully-- {response}")
+                self.logger.info(f"Response Text generated successfully-- {response.text}")
+                self.logger.info(f"Response Json generated successfully-- {response.json()}")
                 response.raise_for_status()
                 return response.json()
             except httpx.HTTPStatusError as exc:
