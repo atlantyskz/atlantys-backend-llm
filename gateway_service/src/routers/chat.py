@@ -3,16 +3,24 @@ from uuid import uuid4
 import datetime
 
 from fastapi.websockets import WebSocketState
+from src.core.enums import LLM_ENDPOINT
 from src.models.chat import ChatDialogueHistory, Message
 from src.services.ai_chat import AiChatService, get_service as get_ai_chat_service
 
 chat_router = APIRouter(prefix='/api')
 
-@chat_router.websocket("/ws/chat")
+@chat_router.websocket("/ws/chat/{type}")
 async def websocket_endpoint(
     websocket: WebSocket,
+    type: str ,
     ai_chat_service: AiChatService = Depends(get_ai_chat_service)
 ):
+    llm_endpoint = None
+    if type == 'tg':
+        llm_endpoint = LLM_ENDPOINT.TELEGRAM_CLIENT.value
+    if type == 'web':
+        llm_endpoint = LLM_ENDPOINT.TELEGRAM_CLIENT.value
+
     await websocket.accept()
     
     session_id = str(uuid4())
@@ -53,7 +61,9 @@ async def websocket_endpoint(
             bot_response = await ai_chat_service.handle_ai_chat_response({
                 "message": user_message,
                 "history_context": history_context
-            })
+            },
+            llm_endpoint
+            )
 
             await chat_history.add_message(sender="bot", message=bot_response["message"]) 
             

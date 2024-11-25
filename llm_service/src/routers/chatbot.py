@@ -1,6 +1,7 @@
 from fastapi import APIRouter, Depends
 from  src.services.llm import LLMService,get_service as get_llm_service
-from  src.prompts.chatbot_system_prompt import get_chatbot_system_prompt
+from  src.prompts.tg_prompt import get_chatbot_system_prompt as tg_bot_system_prompt
+from  src.prompts.chatbot_system_prompt import get_chatbot_system_prompt as chatbot_system_prompt
 from  src.prompts.chat_history_review_prompt import get_summarizer_system_prompt
 from  src.schemas.chatbot import ChatbotRequestDTO,ChatHistoryReviewRequestDTO
 from  src.core.logger import get_logger
@@ -16,7 +17,17 @@ async def get_chatbot():
 @chatbot_router.post("/generate-chat-response")
 async def generate_chat_response(data:ChatbotRequestDTO, llm_service: LLMService = Depends(get_llm_service)):
     logger.info(f"Received chatbot request: {data.model_dump()}")
-    system_prompt = await get_chatbot_system_prompt()
+    system_prompt = await chatbot_system_prompt()
+    logger.info("Generating chatbot response...")
+    response = await llm_service.generate_response(data.model_dump(),system_prompt)
+    logger.info(f"Chatbot response: {response}")
+    return response
+
+
+@chatbot_router.post('/generate-tg-chat-response')
+async def generate_tg_chat_response(data:ChatbotRequestDTO,llm_service:LLMService = Depends(get_llm_service)):
+    logger.info(f"Received chatbot request: {data.model_dump()}")
+    system_prompt = await tg_bot_system_prompt()
     logger.info("Generating chatbot response...")
     response = await llm_service.generate_response(data.model_dump(),system_prompt)
     logger.info(f"Chatbot response: {response}")

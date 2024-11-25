@@ -5,6 +5,7 @@ from  src.core.logger import get_logger
 from  src.core.settings import settings
 from  src.models.chat import ChatDialogueHistory, Message
 from  src.schemas.chat import ChatSummaryView
+from src.core.enums import LLM_ENDPOINT
 
 
 class AiChatService:
@@ -12,13 +13,13 @@ class AiChatService:
     def __init__(self):
         self.logger = get_logger("ai_chat_service")
 
-    async def handle_ai_chat_response(self, message: dict):
+    async def handle_ai_chat_response(self, message: dict, llm_endpoint: str | None = LLM_ENDPOINT.WEB_CLIENT.value):
         async with httpx.AsyncClient() as client:
             try:
                 self.logger.info("Generating chatbot response...")
-                response = await client.post(f"http://llm_service:8001/chatbot/generate-chat-response", json=message)
+                response = await client.post(llm_endpoint, json=message)
+                self.logger.info(f"Response generated successfully-- {response}")
                 response.raise_for_status()
-                self.logger.info("Response generated successfully.")
                 return response.json()
             except httpx.HTTPStatusError as exc:
                 self.logger.info(f"HTTP error occurred: {exc}")
