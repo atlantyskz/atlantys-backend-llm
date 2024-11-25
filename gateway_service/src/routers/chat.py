@@ -19,7 +19,7 @@ async def websocket_endpoint(
     if type == 'tg':
         llm_endpoint = LLM_ENDPOINT.TELEGRAM_CLIENT.value
     if type == 'web':
-        llm_endpoint = LLM_ENDPOINT.TELEGRAM_CLIENT.value
+        llm_endpoint = LLM_ENDPOINT.WEB_CLIENT.value
 
     await websocket.accept()
     
