@@ -1,9 +1,10 @@
 import os
+from fastapi import HTTPException
 from google.oauth2 import service_account
 from googleapiclient.discovery import build
 from abc import ABC, abstractmethod
 from dotenv import load_dotenv
-
+from googleapiclient.errors import HttpError
 class IEventCreator(ABC):
     @abstractmethod
     async def create_event(self, event_data: dict):
@@ -56,7 +57,9 @@ class CalendarManager(IEventReader, IEventCreator):
         return events.get("items", [])
 
     def get_event(self, event_id: str):
-        event = self.service.events().get(calendarId=self.calendarId, eventId=event_id).execute()
-        return event
-
+        try:
+            event = self.service.events().get(calendarId=self.calendarId, eventId=event_id).execute()
+            return event
+        except HttpError as e:
+            raise HTTPException(404,"Not FOund")
 

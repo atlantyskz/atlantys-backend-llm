@@ -21,3 +21,15 @@ async def create_event(event_data: Event):
         }
     }
     return response
+
+
+@booking_router.get('/get-events')
+async def get_events():
+    manager = CalendarManager()
+    return manager.get_events()
+
+
+@booking_router.get('/get-event-by-id/{event_id}')
+async def get_event_by_id(event_id:str):
+    manager = CalendarManager()
+    return manager.get_event(event_id=event_id)
