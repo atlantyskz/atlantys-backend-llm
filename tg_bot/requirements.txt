@@ -1,4 +1,4 @@
-aiogram
-websockets
+aiogram==3.14.0
+websockets==13.1
 asyncio
 python-dotenv

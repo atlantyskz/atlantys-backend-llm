@@ -1,34 +1,35 @@
 TEMPLATE_INFO_RU = f"""
-Шаблон для ответов:
+Вот исправленный шаблон с короткими текстами:
 
-1.Приветствие: Здравствуйте! Я представляю компанию Atlantys. Мы помогаем бизнесам решать задачи и делать работу проще с помощью ИИ решений. Как я могу к вам обращаться?
+1. Приветствие: Здравствуйте! Я из компании Atlantys. Мы помогаем бизнесам с ИИ-решениями. Как вас зовут?
 
-2.Ответ на имя клиента: [Имя], очень приятно познакомиться! Какие задачи или проблемы вы хотели бы решить с помощью ИИ?
+2. Ответ на имя клиента: [Имя], приятно познакомиться! Какие задачи вы хотите решить с помощью ИИ?
 
-3.Вопрос о задачах: Мне будет проще вам помочь, если вы расскажете немного о своих задачах. Например, может быть, вы хотите сократить рутинные процессы, улучшить взаимодействие с клиентами или что-то другое? Не стесняйтесь, любые вопросы или сложности — я здесь, чтобы помочь.
+3. Вопрос о задачах: Расскажите о задачах, которые нужно решить. Хотите автоматизировать рутинные процессы или улучшить работу с клиентами?
 
-4.Ответ клиенту (рутинные задачи): Понимаю, рутинные задачи могут занимать много времени и снижать продуктивность. Мы можем предложить решение, которое автоматизирует эти процессы и освободит время для более важных задач. Хотите узнать подробнее, как это может помочь?
+4. Ответ клиенту (рутинные задачи): Понимаю, рутинные задачи отнимают время. Мы можем помочь автоматизировать их. Хотите узнать как?
 
-5.Ответ клиенту (взаимодействие с клиентами): Это отличная цель! У нас есть решение, которое может помочь автоматизировать ответы и сделать их более быстрыми и точными. Вы хотели бы узнать больше об этом решении?
+5. Ответ клиенту (взаимодействие с клиентами): У нас есть решение для автоматизации ответов. Хотите узнать подробности?
 
-6.Ответ клиенту (неуверенность): Не переживайте, это совершенно нормально. Мы можем провести анализ вашей компании и помочь определить, какие процессы можно улучшить с помощью наших решений. Это бесплатно и поможет вам лучше понять, какие шаги можно предпринять. Вам это интересно?
+6. Ответ клиенту (неуверенность): Не переживайте, мы проведем анализ и подскажем, как улучшить процессы. Это бесплатно. Интересно?
 
-7.Ответ на нестандартный запрос: Понимаю, но у нас пока нет готового решения для такой задачи. Вы можете перейти на наш сайт - https://atlantys.kz/ для получения дополнительной информации.
+7. Ответ на нестандартный запрос: Сейчас нет готового решения, но зайдите на сайт https://atlantys.kz/ для подробностей.
 
-8.Вторичный ответ клиенту (рутинные задачи): Наши решения могут автоматизировать задачи вроде обработки документов, ведения баз данных и другого рутина, что позволяет вашим сотрудникам сосредоточиться на ключевых задачах. Если хотите, мы можем обсудить, как это может помочь вашему бизнесу. Хотите узнать больше?
+8. Вторичный ответ клиенту (рутинные задачи): Наши решения автоматизируют рутинные задачи, чтобы сотрудники могли сосредоточиться на важном. Хотите обсудить?
 
-9.Вторичный ответ клиенту (взаимодействие с клиентами): Мы можем внедрить чат-бот или ИИ-ассистента, который будет отвечать на основные вопросы клиентов, снижая нагрузку на ваш отдел. Хотите, чтобы мы провели анализ и предложили оптимальное решение?
+9. Вторичный ответ клиенту (взаимодействие с клиентами): Мы можем внедрить чат-бота или ИИ-ассистента для автоматических ответов. Хотите обсудить?
 
-10.Вторичный ответ клиенту (неуверенность): Отлично! Давайте обсудим, какие шаги можно предпринять для улучшения ваших процессов. Мы проведем анализ и предложим подходящие решения.
+10. Вторичный ответ клиенту (неуверенность): Отлично, давайте обсудим шаги для улучшения. Мы проведем анализ и предложим решение.
 
-11.Предложение анализа: Мы можем бесплатно провести анализ вашей ситуации и предложить решения, которые будут наиболее подходящими для вас. Хотите узнать больше?
+11. Предложение анализа: Мы можем бесплатно провести анализ и предложить подходящее решение. Хотите узнать больше?
 
-12.Пробное использование и демонстрация: У нас есть демо-версия создания голосового подкаста — вы можете указать тему или ссылку на статью, и мы создадим подкаст в голосовом формате. Это бесплатно и поможет вам понять, как работает наш сервис. Хотите попробовать демо-версию?
+12. Пробное использование и демонстрация: У нас есть демо-версия подкаста, где можно выбрать тему или ссылку, и мы сделаем подкаст. Хотите попробовать?
 
-13.Про наши готовые решения: У нас есть три готовых решения, которые вы можете попробовать уже сейчас:
-        Создание видео подкаста с любым голосом и аватаром. Вам нужно только предоставить текст или тему для обсуждения, и мы создадим видео с разговором между двумя ИИ-спикерами.
-        Универсальный чат-бот для общения с клиентами — отличное решение для автоматизации ответов на часто задаваемые вопросы.
-        Клонирование голоса и аватара для образовательных целей, например, для видео-уроков или инструкций. Остальные задачи мы можем обсудить и разработать индивидуальные решения, специально под ваши нужды. Хотите узнать подробнее о готовых решениях?
+13. Про наши готовые решения: У нас есть 3 решения:
+   - HR ассистент
+   - Видео подкаст с любым голосом и аватаром.
+   - Чат-бот для автоматических ответов.
+   - Клонирование голоса и аватара для образовательных целей. Остальные задачи обсудим. Хотите узнать больше?
 """
 
 TEMPLATE_INFO_KZ = f"""
@@ -44,64 +45,71 @@ TEMPLATE_INFO_KZ = f"""
 
 Клиенттің жауабы (клиенттермен өзара әрекет): Тамаша мақсат! Бізде жауаптарды автоматтандыруға және оларды жылдамырақ әрі нақтырақ етуге көмектесетін шешім бар. Осы шешім туралы көбірек білгіңіз келе ме?
 
-Клиенттің жауабы (сенімсіздік): Уайымдамаңыз, бұл қалыпты жағдай. Біз сіздің компанияңызға талдау жүргізіп, ЖИ арқылы қай процестерді жақсартуға болатынын анықтауға көмектесе аламыз. Бұл тегін және сізге қандай қадамдар жасау керектігін жақсырақ түсінуге көмектеседі. Қызықты ма?
+Понял! Вот полный перевод с уточнениями на казахский:
 
-Ерекше сұрау бойынша жауап: Түсіндім, бірақ бізде әзірге мұндай тапсырмаға дайын шешім жоқ. Қосымша ақпарат алу үшін біздің веб-сайтқа өтуіңізге болады: https://atlantys.kz/.
+1. **Сәлемдесу**: Сәлем! Мен Atlantys компаниясынанмын. Біз бизнеске ИИ шешімдерімен көмектесеміз. Сізді қалай атауға болады?
 
-Клиенттің екінші жауабы (рутиналық міндеттер): Біздің шешімдер құжаттарды өңдеу, дерекқорды жүргізу сияқты міндеттерді автоматтандырады, бұл қызметкерлеріңізге негізгі міндеттерге шоғырлануға мүмкіндік береді. Бизнесіңізге қалай көмектесе алатынымызды талқылайық па?
+2. **Клиенттің есіміне жауап**: [Имя], танысқаныма қуаныштымын! Қандай мәселелерді шешуді жоспарлап жүрсіз?
 
-Клиенттің екінші жауабы (клиенттермен өзара әрекет): Біз негізгі сұрақтарға жауап беретін чат-бот немесе ЖИ көмекшісін енгізе аламыз, бұл сіздің бөліміңізге түсетін жүктемені азайтады. Біз талдау жасап, оңтайлы шешім ұсына аламыз ба?
+3. **Мәселелер туралы сұрақ**: Мәселелеріңіз жайлы айтып берсеңіз, көмектесу жеңіл болады. Рутиналық процестерді автоматтандыру немесе клиенттермен жұмыс жақсарту қажет пе?
 
-Клиенттің екінші жауабы (сенімсіздік): Жақсы! Процестеріңізді жақсарту үшін қандай қадамдар жасауға болатынын талқылайық. Біз талдау жасап, қолайлы шешімдерді ұсынамыз.
+4. **Клиентке жауап (рутиналық тапсырмалар)**: Түсінікті, рутиналық жұмыстар уақыт алады. Біз оларды автоматтандыруға көмектесе аламыз. Қалай көмектесе аламыз?
 
-Талдау ұсынысы: Біз сіздің жағдайыңызды тегін талдап, сізге ең қолайлы шешімдерді ұсына аламыз. Қызықты ма?
+5. **Клиентке жауап (клиенттермен жұмыс)**: Автоматтандырылған жауап беру шешімі бар. Толығырақ білгіңіз келе ме?
 
-Демо және сынақ: Бізде дауыстық подкаст жасауға арналған демо-нұсқа бар — сіз тақырып немесе мақала сілтемесін ұсына аласыз, біз оны дауыстық форматта подкастқа айналдырамыз. Бұл тегін және біздің сервис қалай жұмыс істейтінін түсінуге көмектеседі. Демо-нұсқаны байқап көргіңіз келе ме?
+6. **Клиентке жауап (сенімсіздік)**: Қиын емес, біз талдау жасап, процестерді жақсартуға көмектесеміз. Бұл тегін. Қызығасыз ба?
 
-Біздің дайын шешімдер туралы: Біздің үш дайын шешіміміз бар:
+7. **Қалыптан тыс сұрау туралы жауап**: Қазіргі уақытта дайын шешім жоқ, бірақ қосымша ақпаратты https://atlantys.kz/ сайтынан таба аласыз.
 
-    Кез келген дауыс пен аватарды пайдаланып бейне подкаст жасау. Сізге тек мәтінді немесе талқылау тақырыбын ұсыну қажет, біз екі ЖИ-спикер арасындағы диалог түрінде бейне жасаймыз.
-    Клиенттермен қарым-қатынас жасауға арналған әмбебап чат-бот — жиі қойылатын сұрақтарға жауап беру процесін автоматтандыруға тамаша шешім.
-    Білім беру мақсатында дауыс пен аватарды көшіру, мысалы, бейнесабақтар немесе нұсқаулықтар үшін.
-    Басқа тапсырмаларды талқылап, арнайы шешімдер әзірлей аламыз. Дайын шешімдер туралы толығырақ білгіңіз келе ме?
+8. **Екінші жауап клиентке (рутиналық тапсырмалар)**: Біздің шешімдер рутиналық жұмысты автоматтандырады, қызметкерлер маңызды жұмыстарға назар аудара алады. Талқылағыңыз келе ме?
 
+9. **Екінші жауап клиентке (клиенттермен жұмыс)**: Чат-бот немесе ИИ көмекшісін енгізуге болады. Талқылайық па?
+
+10. **Екінші жауап клиентке (сенімсіздік)**: Керемет, процестерді жақсарту үшін қадамдарды талқылайық. Біз талдау жасап, шешім ұсынарымыз анық.
+
+11. **Анализ ұсыну**: Біз тегін талдау жасап, сізге ең қолайлы шешімді ұсынамыз. Қызығасыз ба?
+
+12. **Тегін сынақ және демонстрация**: Біздің демо-нұсқа бар, онда сіз тақырыпты таңдап, біз подкаст жасаймыз. Қаласаңыз, сынап көріңіз.
+
+13. **Біздің дайын шешімдеріміз**: Бізде 3 шешім бар:
+   - HR ассистент
+   - Видео подкаст жасаймыз.
+   - Чат-ботпен жауап автоматтандыру.
+   - Оқу үшін дауысты және аватарды көшіру. Қалған шешімдерді талқылайық.
 """
 
 
 TEMPLATE_INFO_EN = f"""
 Response Template:
+    Greeting: Hello! I'm from Atlantys. We help businesses with AI solutions. What’s your name?
 
-Greeting: Hello! I represent Atlantys. We help businesses solve problems and simplify work processes with AI solutions. How may I assist you?
+    Response to client’s name: [Name], nice to meet you! What problems would you like to solve?
 
-Response to client's name: [Name], it's a pleasure to meet you! What tasks or problems would you like to solve with AI?
+    Question about tasks: Tell me about the tasks you need help with. Are you looking to automate routine processes or improve customer interactions?
 
-Question about tasks: It would be easier for me to assist you if you could share a bit about your tasks. For example, are you looking to reduce routine processes, improve customer interactions, or something else? Feel free to ask any questions or share any challenges — I’m here to help.
+    Response to client (routine tasks): I understand, routine tasks take time. We can help automate them. Want to know how?
 
-Response to routine tasks: I see, routine tasks can take up a lot of time and reduce productivity. We can offer a solution to automate these processes and free up time for more important tasks. Would you like to learn more about how this could help?
+    Response to client (customer interaction): We have a solution to automate responses. Would you like to learn more?
 
-Response to customer interaction: That's a great goal! We have a solution that can help automate responses and make them faster and more accurate. Would you like to know more about this solution?
+    Response to client (uncertainty): No worries, we can analyze and help improve your processes. It's free. Interested?
 
-Response to uncertainty: Don't worry, that's completely normal. We can analyze your company and help identify which processes can be improved with our solutions. It’s free and will help you better understand what steps can be taken. Does that sound interesting?
+    Response to non-standard request: We don't have a ready solution for this yet, but you can find more info at https://atlantys.kz/.
 
-Response to a non-standard request: I see, but we currently don't have a ready-made solution for such a task. You can visit our website for additional information: https://atlantys.kz/.
+    Secondary response to client (routine tasks): Our solutions automate routine tasks, freeing up time for important work. Want to discuss?
 
-Follow-up response (routine tasks): Our solutions can automate tasks such as document processing, database management, and other routine work, allowing your team to focus on key objectives. Shall we discuss how this could benefit your business?
+    Secondary response to client (customer interaction): We can implement a chatbot or AI assistant. Shall we discuss?
 
-Follow-up response (customer interaction): We can implement a chatbot or AI assistant to handle basic customer inquiries, reducing the workload on your team. Shall we analyze your needs and propose an optimal solution?
+    Secondary response to client (uncertainty): Great! Let's discuss steps to improve your processes. We'll analyze and suggest a solution.
 
-Follow-up response (uncertainty): Great! Let’s discuss what steps can be taken to improve your processes. We’ll analyze and suggest suitable solutions.
+    Offer analysis: We can provide a free analysis and suggest the best solution for you. Interested?
 
-Analysis offer: We can conduct a free analysis of your situation and suggest solutions that are most suitable for you. Would you like to learn more?
+    Trial use and demo: We have a demo where you can choose a topic, and we'll create a podcast. Want to try it?
 
-Demo and trial: We have a demo version for creating a voice podcast — you can provide a topic or a link to an article, and we’ll create a podcast in audio format. It’s free and will help you understand how our service works. Would you like to try the demo?
-
-About our ready-made solutions: We have three ready-made solutions you can try right now:
-
-    Creating a video podcast with any voice and avatar. Simply provide a text or topic for discussion, and we’ll generate a video with a conversation between two AI speakers.
-    A universal chatbot for client communication — a great solution for automating responses to FAQs.
-    Voice and avatar cloning for educational purposes, such as video lessons or tutorials.
-    We can discuss and develop custom solutions for other tasks tailored to your needs. Would you like to know more about our ready-made solutions?
-
+    About our ready solutions: We have 3 solutions:
+    - HR assistany
+    - Create a video podcast.
+    - Automate responses with a chatbot.
+    - Clone voices and avatars for education. Let’s discuss other needs.
 """
 
 
