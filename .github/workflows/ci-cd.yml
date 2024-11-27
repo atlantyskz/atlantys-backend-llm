@@ -40,3 +40,10 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/llm_service:latest
           
+      - name: Build and Push Telegram Bot
+        uses: docker/build-push-action@v3
+        with:
+          context: ./tg_bot
+          file: ./tg_bot/Dockerfile
+          push: true
+          tags:  ${{ secrets.DOCKER_USERNAME }}/tg_bot:latest

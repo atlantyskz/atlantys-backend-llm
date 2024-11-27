@@ -23,9 +23,20 @@ services:
     ports:
       - "8001:8001"
     volumes:
-      - ./llm_service:/app  # Монтируем локальную директорию в контейнер
+      - ./llm_service:/app  
     env_file:
-      - .env  # Указываем файл с переменными окружения
+      - .env  
+    networks:
+      - app_network
+
+  tg_bot:
+    build: 
+      context: ./tg_bot
+      dockerfile: Dockerfile
+    volumes:
+      - ./tg_bot:/app
+    env_file:
+      - .env
     networks:
       - app_network
 

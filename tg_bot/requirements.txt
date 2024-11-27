@@ -1,0 +1,4 @@
+aiogram
+websockets
+asyncio
+python-dotenv
