@@ -94,7 +94,6 @@ async def command_start_handler(message: types.Message):
             await message.reply("Не удалось установить соединение с сервером. Попробуйте позже.")
             return
         await message.reply("Здравствуйте! Я представляю компанию Atlantys. Мы помогаем бизнесам решать задачи и делать работу проще с помощью ИИ решений. Как я могу к вам обращаться?")
-    await message.answer(f"Салем, {message.from_user.username}!")
 
 @dp.message(Command(commands=['reset']))
 async def reset_handler(message:types.Message):
@@ -128,6 +127,7 @@ async def send_combined_message(user_id: int):
             return
             
         try:
+            logging.info(response)
             response_data = json.loads(response)
         except json.JSONDecodeError as json_error:
             logging.error(f"Invalid JSON received from server: {response}")
@@ -135,7 +135,6 @@ async def send_combined_message(user_id: int):
             await bot.send_message(user_id, "Получен некорректный ответ от сервера. Попробуйте еще раз.")
             return
             
-        # Validate response structure
         if not isinstance(response_data, dict):
             logging.error(f"Unexpected response format: {response_data}")
             await bot.send_message(user_id, "Неверный формат ответа от сервера. Попробуйте еще раз.")
