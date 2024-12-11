@@ -24,7 +24,7 @@ def custom_openapi():
         routes=app.routes,
     )
     openapi_schema["openapi"] = "3.0.3"
-    app.openapi_schema = openapi_schema
+    app.openapi_schema = openapi_schema 
     return app.openapi_schema
 
 def register_static_docs_routers(app: FastAPI):

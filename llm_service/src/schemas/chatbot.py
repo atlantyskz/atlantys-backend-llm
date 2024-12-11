@@ -14,3 +14,11 @@ class ChatHistoryReviewRequestDTO(BaseModel):
 
     class Config:
         from_attributes = True
+
+class ChatbotResponseDTO(BaseModel):
+    sender: str = 'bot'
+    message: str 
+
+
+class SummaryChatResponse(BaseModel):
+    summary:str

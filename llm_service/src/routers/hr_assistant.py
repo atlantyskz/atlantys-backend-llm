@@ -1,34 +1,28 @@
 import json
 import re
-from fastapi import APIRouter,Depends
+from typing import Optional
+from fastapi import APIRouter, Body,Depends, File, Form, HTTPException, UploadFile
 from  src.services.llm import LLMService,get_service as get_llm_service
 from  src.services.extractor import UrlExtractorService,get_service as get_url_extractor_service
-from  src.schemas.hr_assistant import HRAssistantDTO
+from  src.schemas.hr_assistant import *
 from src.prompts.hr_assistant_prompt import get_hr_assistant_system_prompt
+from src.prompts.vacancy_maker_prompt import get_vacancy_maker_system_prompt
 
 
-hr_assistant_router = APIRouter()
+hr_assistant_router = APIRouter(prefix="/hr")
 
-def prepare_for_json(text: str) -> str:
-    # Заменяем символы новой строки, возврата каретки и табуляции на их экранированные версии
-    text = text.replace("\n", "\\n").replace("\r", "\\r").replace("\t", "\\t")
-    # Также можно использовать json.dumps, чтобы экранировать любые другие символы
-    return json.dumps(text)
 
-# Ваш эндпоинт
-@hr_assistant_router.post('/analyze_cv')
-async def analyze_cv(data: HRAssistantDTO, llm_service: LLMService = Depends(LLMService)):
-    try:
-        system_prompt = await get_hr_assistant_system_prompt()
+@hr_assistant_router.post("/analyze_cv_by_vacancy")
+async def analyze_cv_by_vacancy(data:dict, llm_service:LLMService = Depends(get_llm_service)):
+    system_prompt = await get_hr_assistant_system_prompt()
+    response = await llm_service.generate_response(data,system_prompt,)
+    return response 
 
-        # Применяем предобработку к текстам
-        candidate_resume = prepare_for_json(data.candidate_resume)
-
-        # Теперь возвращаем отформатированные данные
-        return {
-            "vacancy_requirements": data.vacancy_requirements,
-            "candidate_resume": candidate_resume
-        }
-
-    except Exception as e:
-        return {"error": str(e)}
+@hr_assistant_router.post("/generate_vacancy",)
+async def create_vacancy(
+    user_message:Text = Body(...),
+    llm_service: LLMService = Depends(get_llm_service)
+):
+    system_prompt = await get_vacancy_maker_system_prompt()
+    response = await llm_service.generate_response(user_message, system_prompt, )
+    return response

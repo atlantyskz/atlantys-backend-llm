@@ -1,18 +1,28 @@
+from typing import Any
+from dotenv import load_dotenv
+from openai import AsyncOpenAI
 import os
 import json
 from fastapi import HTTPException
-from openai import AsyncOpenAI
-from  src.core.logger import get_logger
-from dotenv import load_dotenv
+from pydantic import BaseModel
+from logging import getLogger
 
+class CalendarEvent(BaseModel):
+    name: str
+    date: str
+    participants: list[str]
 
-class LLMService():
+class LLMService:
     def __init__(self):
         load_dotenv()
-        self.openai = AsyncOpenAI(api_key=os.getenv("OPENAI_API_KEY"),base_url=os.getenv("OPENROUTER_BASE_URL"),)
-        self.logger = get_logger("llm_service") 
-        print(os.getenv("OPENAI_API_KEY"))
-
+        self.openai = AsyncOpenAI(
+            api_key=os.getenv("OPENAI_API_KEY"),
+            base_url=os.getenv("OPENROUTER_BASE_URL")
+        )
+        self.logger = getLogger("llm_service")
+        print(os.getenv("OPENAI_API_KEY"),os.getenv("OPENROUTER_BASE_URL"))
+        
+            
     async def generate_response(self, message: dict, system_prompt: str):
         try:
             response = await self.openai.chat.completions.create(
@@ -28,9 +38,6 @@ class LLMService():
                     }
                 ]
             )
-            full_response = response.choices[0].message.content
-            self.logger.info(f"Generated response: {full_response}")
-
             llm_response = response.choices[0].message.content
             self.logger.info(f"Received parsed JSON response: {llm_response}")
             return json.loads(llm_response)
@@ -40,9 +47,6 @@ class LLMService():
         except Exception as e:
             self.logger.error(f"Unexpected error: {str(e)}")
             raise HTTPException(status_code=500, detail="An unexpected error occurred while processing the AI response.")
-
-
-        
 
 async def get_service():
     return LLMService()

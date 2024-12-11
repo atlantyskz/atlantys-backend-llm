@@ -1,5 +1,4 @@
 services:
-  # Service: Gateway
   gateway_service:
     build:
       context: ./gateway_service
@@ -7,15 +6,14 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - ./gateway_service:/app  # Монтируем локальную директорию в контейнер
+      - ./gateway_service:/app 
     env_file:
-      - .env    # Указываем файл с переменными окружения
+      - .env   
     networks:
       - app_network
     depends_on:
       - llm_service
     
-  # Service: LLM
   llm_service:
     build:
       context: ./llm_service
@@ -29,16 +27,6 @@ services:
     networks:
       - app_network
 
-  tg_bot:
-    build: 
-      context: ./tg_bot
-      dockerfile: Dockerfile
-    volumes:
-      - ./tg_bot:/app
-    env_file:
-      - .env
-    networks:
-      - app_network
 
 networks:
   app_network:
