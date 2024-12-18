@@ -8,7 +8,7 @@ RUN apt-get update && apt-get install -y \
     gcc \
     && rm -rf /var/lib/apt/lists/*
 
-# Set working directory
+# Set working directoryz    
 WORKDIR /app
 
 # Copy and install dependencies

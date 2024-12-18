@@ -2,8 +2,8 @@ from typing import List, Optional
 from pydantic import BaseModel
 
 class HRAssistantDTO(BaseModel):
-    vacancy_requirement: str
-    cv_file: str
+    vacancy_text: str
+    cv_text: str
 
 class Text(BaseModel):
     user_message:str

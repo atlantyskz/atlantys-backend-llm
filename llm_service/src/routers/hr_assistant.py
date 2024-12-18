@@ -13,10 +13,10 @@ hr_assistant_router = APIRouter(prefix="/hr")
 
 
 @hr_assistant_router.post("/analyze_cv_by_vacancy")
-async def analyze_cv_by_vacancy(data:dict, llm_service:LLMService = Depends(get_llm_service)):
+async def analyze_cv_by_vacancy(data:HRAssistantDTO, llm_service:LLMService = Depends(get_llm_service)):
     system_prompt = await get_hr_assistant_system_prompt()
-    response = await llm_service.generate_response(data,system_prompt,)
-    return response 
+    res = await llm_service.generate_response(data.model_dump(),system_prompt)
+    return res 
 
 @hr_assistant_router.post("/generate_vacancy",)
 async def create_vacancy(
