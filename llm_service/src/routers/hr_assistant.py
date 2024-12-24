@@ -20,9 +20,9 @@ async def analyze_cv_by_vacancy(data:HRAssistantDTO, llm_service:LLMService = De
 
 @hr_assistant_router.post("/generate_vacancy",)
 async def create_vacancy(
-    user_message:Text = Body(...),
+    user_data:VacancyMaker = Body(...),
     llm_service: LLMService = Depends(get_llm_service)
 ):
     system_prompt = await get_vacancy_maker_system_prompt()
-    response = await llm_service.generate_response(user_message, system_prompt, )
+    response = await llm_service.generate_response(user_data, system_prompt, )
     return response

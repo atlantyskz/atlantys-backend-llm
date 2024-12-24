@@ -163,6 +163,7 @@ cython_debug/
 
 
 /data
+/mongo_data
 
 {
   "candidate_info": {

@@ -5,10 +5,11 @@ class HRAssistantDTO(BaseModel):
     vacancy_text: str
     cv_text: str
 
-class Text(BaseModel):
+class VacancyMaker(BaseModel):
     user_message:str
+    vacancy_to_update:Optional[dict] = None
 
-class CandidateInfo(BaseModel):
+class CandidateInfo(BaseModel): 
     fullname: str
     gender: str
     age: int

@@ -7,6 +7,10 @@ Instructions:
 1. Ensure that the output follows the structure of a job vacancy posting on hh.kz.
 2. Fill in any missing fields with reasonable estimates based on the job's nature or industry standards.
 3. Be sure to generate the output in JSON format, and use a professional and clear tone for the job listing.
+4. **If the user requests specific changes to any keys (e.g., salary, work format, responsibilities), update the JSON object accordingly.**
+   - Interpret user requests flexibly, ensuring that the modification improves the clarity and professionalism of the vacancy listing.
+   - If the requested change requires updates to related fields for consistency (e.g., changing the work format might affect the work schedule), make those adjustments as well.
+5. Always return the complete and updated JSON object after applying changes.
 
 Structure to follow:
 - Название Вакансии (e.g., Frontend - разработчик)
@@ -43,7 +47,7 @@ Example Response (in JSON format):
     "Знакомство с методологиями разработки Scrum/Agile",
     "Опыт создания объектно-ориентированных веб-приложений на JavaScript, HTML5, CSS3 и фреймворков }React, Node.js).",
     "Желательно иметь навыки back-end разработки.",
-    "Опыт работы с Git",
+    "Опыт работы с Git"
   ],
   "conditions": [
     "Современный офис",
@@ -62,6 +66,14 @@ Example Response (in JSON format):
   "contacts": "Контактные данные компании или рекрутера",
   "location": "Алматы"
 }
+
+Additional Instructions for Updates:
+- **User Modification Requests:** If the user provides a specific request to modify the JSON, identify the relevant keys and update them as requested. Return the updated JSON object with all changes applied.
+- **Example User Requests:**
+   - "Поменяй вилку зарплаты на 500 000 - 600 000 тг."
+   - "Добавь в обязанности пункт 'Оптимизация производительности'."
+   - "Измени формат работы на 'гибрид'."
+- **Interpreting Requests:** Ensure updates maintain professionalism and adapt related fields if necessary for consistency (e.g., changing the work format to 'удалёнка' might require adjustments to address or schedule).
 
 Important Notes:
 - Your response MUST be a valid JSON object without any additional formatting!

@@ -1,32 +1,51 @@
+
 services:
+  mongodb:
+    image: mongo:6.0
+    container_name: mongodb
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: pass
+    ports:
+      - "27019:27017"
+    networks:
+      - app_network
+    volumes:
+      - ./mongo_data:/data/db
+
+  # === Gateway Service ===
   gateway_service:
     build:
       context: ./gateway_service
       dockerfile: Dockerfile
+    container_name: gateway_service
     ports:
       - "8000:8000"
     volumes:
-      - ./gateway_service:/app 
+      - ./gateway_service:/app
     env_file:
-      - .env   
+      - .env
     networks:
       - app_network
     depends_on:
+      - mongodb
       - llm_service
-    
+
+  # === LLM Service ===
   llm_service:
     build:
       context: ./llm_service
       dockerfile: Dockerfile
+    container_name: llm_service
     ports:
       - "8001:8001"
     volumes:
-      - ./llm_service:/app  
+      - ./llm_service:/app
     env_file:
-      - .env  
+      - .env
     networks:
       - app_network
-
 
 networks:
   app_network:
