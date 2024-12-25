@@ -19,7 +19,7 @@ async def generate_chat_response(data:ChatbotRequestDTO, llm_service: LLMService
     logger.info(f"Received chatbot request: {data.model_dump()}")
     system_prompt = await chatbot_system_prompt()
     logger.info("Generating chatbot response...")
-    response = await llm_service.generate_response(data.model_dump(),system_prompt,ChatbotResponseDTO)
+    response = await llm_service.generate_response(data.model_dump(),system_prompt)
     logger.info(f"Chatbot response: {response}")
     return response
 
