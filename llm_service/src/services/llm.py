@@ -39,8 +39,15 @@ class LLMService:
                 ]
             )
             llm_response = response.choices[0].message.content
+            tokens_spent = response.usage.total_tokens
             self.logger.info(f"Received parsed JSON response: {llm_response}")
-            return json.loads(llm_response)
+            if isinstance(llm_response, bytes):
+                llm_response = llm_response.decode('utf-8')
+            parsed_response = json.loads(llm_response)
+            return {
+            'tokens_spent': tokens_spent,
+            'llm_response': parsed_response
+        }
         except json.JSONDecodeError:
             self.logger.error("Failed to parse response as JSON. Returning raw content.")
             return {"response": llm_response, "error": "Response is not in JSON format."}

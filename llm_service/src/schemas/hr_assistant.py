@@ -9,6 +9,12 @@ class VacancyMaker(BaseModel):
     user_message:str
     vacancy_to_update:Optional[dict] = None
 
+class ResumeAnalyzer(BaseModel):
+    user_message:str
+    resumes:Optional[dict] = None
+
+
+
 class CandidateInfo(BaseModel): 
     fullname: str
     gender: str

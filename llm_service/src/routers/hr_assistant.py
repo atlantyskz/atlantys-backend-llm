@@ -6,6 +6,7 @@ from  src.services.llm import LLMService,get_service as get_llm_service
 from  src.services.extractor import UrlExtractorService,get_service as get_url_extractor_service
 from  src.schemas.hr_assistant import *
 from src.prompts.hr_assistant_prompt import get_hr_assistant_system_prompt
+from src.prompts.review_cv import get_review_cv_system_prompt
 from src.prompts.vacancy_maker_prompt import get_vacancy_maker_system_prompt
 
 
@@ -17,6 +18,13 @@ async def analyze_cv_by_vacancy(data:HRAssistantDTO, llm_service:LLMService = De
     system_prompt = await get_hr_assistant_system_prompt()
     res = await llm_service.generate_response(data.model_dump(),system_prompt)
     return res 
+
+@hr_assistant_router.post("/review_cv_results")
+async def review_cv_results(data: ResumeAnalyzer, llm_service: LLMService = Depends(get_llm_service)):
+    system_prompt = await get_review_cv_system_prompt()
+    res = await llm_service.generate_response(data.model_dump(),system_prompt)
+    return res 
+
 
 @hr_assistant_router.post("/generate_vacancy",)
 async def create_vacancy(

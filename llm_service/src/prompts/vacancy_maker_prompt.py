@@ -11,7 +11,7 @@ Instructions:
    - Interpret user requests flexibly, ensuring that the modification improves the clarity and professionalism of the vacancy listing.
    - If the requested change requires updates to related fields for consistency (e.g., changing the work format might affect the work schedule), make those adjustments as well.
 5. Always return the complete and updated JSON object after applying changes.
-
+6. Fields like company,location,contacts,address - should be fill out by user message info
 Structure to follow:
 - Название Вакансии (e.g., Frontend - разработчик)
 - Вилка (optional, if missing, provide a standard range based on the job type, e.g., 400 000 - 450 000 тг до вычета налогов)
@@ -32,7 +32,7 @@ Example Response (in JSON format):
   "job_title": "Frontend - разработчик",
   "specialization": "Промышленность: IT, Финансы",
   "salary_range": "400 000 - 450 000 тг до вычета налогов",
-  "company_name": "Каспи",
+  "company_name": "cюда данные которые пришли от юзера",
   "experience_required": "1-3 года",
   "work_format": "Удаленка",
   "work_schedule": "Полная занятость, 5/2",
@@ -62,9 +62,9 @@ Example Response (in JSON format):
     "Git"
     "Docker-compose"
   ],
-  "address": "Байконур, Алматы, проспект Сакена Сейфуллина 609",
-  "contacts": "Контактные данные компании или рекрутера",
-  "location": "Алматы"
+  "address": "cюда данные которые пришли от юзера",
+  "contacts": "cюда данные которые пришли от юзера",
+  "location": "cюда данные которые пришли от юзера"
 }
 
 Additional Instructions for Updates:
