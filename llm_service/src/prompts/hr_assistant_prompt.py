@@ -24,6 +24,8 @@ Instructions:
     3. Составь JSON-ответ как в Example Response:
        - Дополнительно в разделе "analysis" обязательно добавь поле "matching_percentage" со значением типа int или float (0–100).
        - Убедись, что JSON строго валидный — без лишних символов и форматирования.
+       - Your response MUST be a valid JSON object without any additional formatting!
+       - Do not use code blocks, quotation marks, or any symbols outside of standard JSON syntax.
 
     4. Example Response (шаблонный пример финального JSON):
 {
@@ -117,6 +119,9 @@ Important Notes:
     • matching_percentage: целое или вещественное число от 0 до 100.
     • overall_comment: максимум 100 символов, без лишних знаков препинания.
     • Проверяй валидность JSON после составления.
+    - Your response MUST be a valid JSON object without any additional formatting!
+    - Do not use code blocks, quotation marks, or any symbols outside of standard JSON syntax.
+
 """
 
 async def get_hr_assistant_system_prompt():
