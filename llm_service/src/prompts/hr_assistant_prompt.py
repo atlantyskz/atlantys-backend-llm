@@ -119,7 +119,7 @@ Important Notes:
     • matching_percentage: целое или вещественное число от 0 до 100.
     • overall_comment: максимум 100 символов, без лишних знаков препинания.
     • Проверяй валидность JSON после составления.
-    - Your response MUST be a valid JSON object without any additional formatting!
+      - Your response MUST be a valid JSON object without any additional formatting!
     - Do not use code blocks, quotation marks, or any symbols outside of standard JSON syntax.
 
 """
