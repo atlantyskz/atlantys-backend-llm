@@ -17,7 +17,7 @@ class LLMService:
         load_dotenv()
         self.openai = AsyncOpenAI(
             api_key=os.getenv("OPENAI_API_KEY"),
-            base_url=os.getenv("OPENROUTER_BASE_URL")
+            #base_url=os.getenv("OPENROUTER_BASE_URL")
         )
         self.logger = getLogger("llm_service")
         print(os.getenv("OPENAI_API_KEY"),os.getenv("OPENROUTER_BASE_URL"))
@@ -26,7 +26,7 @@ class LLMService:
     async def generate_response(self, message: dict, system_prompt: str):
         try:
             response = await self.openai.chat.completions.create(
-                model='openai/gpt-4o-mini-2024-07-18',
+                model='gpt-4o-mini-2024-07-18',
                 messages=[
                     {
                         "role": "system",
@@ -40,7 +40,6 @@ class LLMService:
             )
             llm_response = response.choices[0].message.content
             tokens_spent = response.usage.total_tokens
-            self.logger.info(f"Received parsed JSON response: {llm_response}")
             if isinstance(llm_response, bytes):
                 llm_response = llm_response.decode('utf-8')
             parsed_response = json.loads(llm_response)
