@@ -26,8 +26,10 @@ Instructions:
        - Убедись, что JSON строго валидный — без лишних символов и форматирования.
        - Your response MUST be a valid JSON object without any additional formatting!
        - Do not use code blocks, quotation marks, or any symbols outside of standard JSON syntax.
-
-    4. Example Response (шаблонный пример финального JSON):
+    4. Если какое-либо поле в резюме или вакансии отсутствует:
+      - Используй дефис `"-"` вместо `null`, `"Не указано"` или других значений.
+      - Убедись, что каждое поле заполняется хотя бы дефолтным значением.
+    5. Example Response (шаблонный пример финального JSON):
 {
   "candidate_info": {
     "fullname": "Абдрахман Мухаммед",
@@ -47,7 +49,7 @@ Instructions:
     "specializations": ["Программист, разработчик"],
     "employment_type": "Полная занятость",
     "work_schedule": "Полный день",
-    "desired_salary": "Не указана"
+    "desired_salary": "-"
   },
   "experience": {
     "overall_years": "3 года 7 месяцев",
