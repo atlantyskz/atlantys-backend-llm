@@ -1,6 +1,6 @@
 import json
 import re
-from typing import Optional
+from typing import Any, Optional
 from fastapi import APIRouter, Body,Depends, File, Form, HTTPException, UploadFile
 from  src.services.llm import LLMService,get_service as get_llm_service
 from  src.services.extractor import UrlExtractorService,get_service as get_url_extractor_service
@@ -14,21 +14,23 @@ hr_assistant_router = APIRouter(prefix="/hr")
 
 
 @hr_assistant_router.post("/analyze_cv_by_vacancy")
-async def analyze_cv_by_vacancy(data:HRAssistantDTO, llm_service:LLMService = Depends(get_llm_service)):
+async def analyze_cv_by_vacancy(data:dict = Body(...), llm_service:LLMService = Depends(get_llm_service)):
+    
     system_prompt = await get_hr_assistant_system_prompt()
-    res = await llm_service.generate_response(data.model_dump(),system_prompt)
+    res = await llm_service.generate_response(data,system_prompt)
     return res 
 
 @hr_assistant_router.post("/review_cv_results")
-async def review_cv_results(data: ResumeAnalyzer, llm_service: LLMService = Depends(get_llm_service)):
+async def review_cv_results(data: dict = Body(...), llm_service: LLMService = Depends(get_llm_service)):
+    print(data)
     system_prompt = await get_review_cv_system_prompt()
-    res = await llm_service.generate_response(data.model_dump(),system_prompt)
+    res = await llm_service.generate_response(data,system_prompt)
     return res 
 
 
 @hr_assistant_router.post("/generate_vacancy",)
 async def create_vacancy(
-    user_data:VacancyMaker = Body(...),
+    user_data:dict = Body(...),
     llm_service: LLMService = Depends(get_llm_service)
 ):
     system_prompt = await get_vacancy_maker_system_prompt()

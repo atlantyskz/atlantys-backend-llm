@@ -1,3 +1,4 @@
+import pprint
 from typing import Any
 from dotenv import load_dotenv
 from openai import AsyncOpenAI
@@ -7,10 +8,6 @@ from fastapi import HTTPException
 from pydantic import BaseModel
 from logging import getLogger
 
-class CalendarEvent(BaseModel):
-    name: str
-    date: str
-    participants: list[str]
 
 class LLMService:
     def __init__(self):
@@ -21,32 +18,29 @@ class LLMService:
         )
         self.logger = getLogger("llm_service")
         print(os.getenv("OPENAI_API_KEY"),os.getenv("OPENROUTER_BASE_URL"))
-        
+
+
             
-    async def generate_response(self, message: dict, system_prompt: str):
+    async def generate_response(self, data: dict, system_prompt: str):
         try:
+            messages = [{"role": "system", "content": system_prompt}]
+            messages.extend(data.get('messages'))
             response = await self.openai.chat.completions.create(
                 model='gpt-4o-mini-2024-07-18',
-                messages=[
-                    {
-                        "role": "system",
-                        "content": system_prompt
-                    },
-                    {
-                        "role": "user",
-                        "content": f"{message}"
-                    }
-                ]
+                messages=messages
             )
+
             llm_response = response.choices[0].message.content
             tokens_spent = response.usage.total_tokens
+
             if isinstance(llm_response, bytes):
                 llm_response = llm_response.decode('utf-8')
+
             parsed_response = json.loads(llm_response)
             return {
-            'tokens_spent': tokens_spent,
-            'llm_response': parsed_response
-        }
+                'tokens_spent': tokens_spent,
+                'llm_response': parsed_response
+            }
         except json.JSONDecodeError:
             self.logger.error("Failed to parse response as JSON. Returning raw content.")
             return {"response": llm_response, "error": "Response is not in JSON format."}
