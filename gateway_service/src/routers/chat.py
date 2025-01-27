@@ -1,4 +1,5 @@
 import datetime
+import logging
 from uuid import uuid4
 from fastapi import WebSocket, APIRouter, Depends, WebSocketDisconnect
 from fastapi.websockets import WebSocketState
@@ -36,7 +37,7 @@ async def websocket_endpoint(
     if websocket.application_state == WebSocketState.CONNECTED:
         await websocket.send_text("Connection established")
     bot_intro_message = "Здравствуйте! Я представляю компанию Atlantys. Мы помогаем бизнесам решать задачи и делать работу проще с помощью ИИ решений. Как я могу к вам обращаться?"
-    await chat_history.add_message(sender="bot", message=bot_intro_message) 
+    await chat_history.add_message(sender="assistant", message=bot_intro_message) 
     try:
         while True:
             print("Waiting for data")
@@ -49,24 +50,29 @@ async def websocket_endpoint(
             user_message = data["message"]
             await chat_history.add_message(sender="user", message=user_message)
             
-            history_context = [
-                {
-                    "user_message": msg.message if msg.sender == "user" else None,
-                    "bot_response": msg.message if msg.sender == "bot" else None
-                } for msg in chat_history.messages
-            ]
-            history_context = [entry for entry in history_context if entry["user_message"] or entry["bot_response"]]
+            history_content = "\n".join([f"{msg.role}: {msg.content}" for msg in chat_history.messages if msg.content])
 
-            bot_response = await ai_chat_service.handle_ai_chat_response({
-                "message": user_message,
-                "history_context": history_context
-            },
+            # Create a single 'assistant' message that includes the full history as content
+            messages = [{
+                'role': 'assistant',
+                'content': history_content  # Add the full history here as the assistant's content
+            }]
+            
+        
+            messages.append({
+                'role':'user',
+                'content':user_message
+            })
+            
+            bot_response = await ai_chat_service.handle_ai_chat_response({"messages":messages},
             llm_endpoint
             )
+            logging.info(bot_response)
+            bot_message = bot_response.get("llm_response").get('message')
 
-            await chat_history.add_message(sender="bot", message=bot_response["message"]) 
+            await chat_history.add_message(sender="assistant", message=bot_message) 
             
-            await websocket.send_json(bot_response)
+            await websocket.send_json(bot_response.get('llm_response'))
             print("Chat history updated successfully.")
 
     except WebSocketDisconnect:

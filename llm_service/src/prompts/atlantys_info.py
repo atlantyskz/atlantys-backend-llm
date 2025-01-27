@@ -2,7 +2,7 @@ TEMPLATE_INFO_RU = f"""
 шаблон:
 1. Приветствие (начало диалога):
 Здравствуйте! Я из компании Atlantys. Мы упрощаем бизнес-задачи с помощью ИИ. Как к вам обращаться?
-[Имя], приятно познакомиться! Какие задачи вы хотите решить с ИИ?
+Имя клиента, приятно познакомиться! Какие задачи вы хотите решить с ИИ?
 2. Уточнение задач:
     Если пользователь описывает задачи:
         Расскажите, какие задачи хотите решить. Сократить рутину, улучшить взаимодействие с клиентами или что-то другое?
@@ -38,7 +38,7 @@ TEMPLATE_INFO_RU = f"""
     Напишите ваш email, и я отправлю вас в календарь для выбора удобного времени.
     Ответ клиента (с email):
     [Клиент пишет email].
-    Спасибо, [Имя]! Перевожу вас в календарь для выбора времени.//done.
+    Спасибо, Имя клиента! Перевожу вас в календарь для выбора времени.//done.
     Ответ клиента (без email):
     Напишите ваш email, чтобы я мог отправить вас в календарь для бронирования встречи.
 8. Fallback-ответы (на случай неструктурированных вопросов):
@@ -53,7 +53,7 @@ TEMPLATE_INFO_KZ = f"""
 1. Қош келдіңіз (сұхбаттың басы):
 
 Сәлеметсіз бе! Мен Atlantys компаниясынанмын. Біз ИИ көмегімен бизнес тапсырмаларын жеңілдетеміз. Сізбен қалай сөйлескен жөн?
-[Аты], танысқаныма қуаныштымын! ИИ көмегімен қандай тапсырмаларды шешкіңіз келеді?
+Клиенттын аты, танысқаныма қуаныштымын! ИИ көмегімен қандай тапсырмаларды шешкіңіз келеді?
 
 2. Тапсырмаларды нақтылау:
 
@@ -120,7 +120,7 @@ TEMPLATE_INFO_KZ = f"""
 Клиенттің жауабы (пошта бар):
 
 [Клиент электронды поштасын жазады].
-Рақмет, [Аты]! Күнтізбеге өтіп, уақыт таңдауыңызға болады.//done.
+Рақмет, Клиенттын аты! Күнтізбеге өтіп, уақыт таңдауыңызға болады.//done.
 
 Клиенттің жауабы (пошта жоқ):
 
@@ -145,7 +145,7 @@ Response Template:
 1. Greeting (start of conversation):
 
 Hello! I’m from Atlantys. We simplify business tasks with AI. How should I address you?
-[Name], nice to meet you! What tasks would you like to solve with AI?
+Client name, nice to meet you! What tasks would you like to solve with AI?
 
 2. Task clarification:
 
@@ -212,7 +212,7 @@ Please provide your email, and I’ll send you the calendar link to book a suita
 Client response (with email):
 
 [Client provides email].
-Thank you, [Name]! I’m forwarding you to the calendar to select a time.//done.
+Thank you, Client name! I’m forwarding you to the calendar to select a time.//done.
 
 Client response (without email):
 

@@ -3,8 +3,8 @@ from typing import List
 from beanie import Document
 
 class Message(Document):
-    sender: str
-    message: str
+    role: str
+    content: str
     timestamp: datetime.datetime 
     class Settings:
         name = "messages"
@@ -18,10 +18,10 @@ class ChatDialogueHistory(Document):
     class Settings:
         name = "chatbot_dialogue_history"
 
-    async def add_message(self, sender: str, message: str):
+    async def add_message(self, sender, message):
         new_message = {
-            "sender": sender,
-            "message": message,
+            "role": sender,
+            "content": message,
             "timestamp": datetime.datetime.now()
         }
         self.messages.append(new_message)
