@@ -13,11 +13,10 @@ class LLMService:
     def __init__(self):
         load_dotenv()
         self.openai = AsyncOpenAI(
-            api_key=os.getenv("OPENAI_API_KEY"),
-            #base_url=os.getenv("OPENROUTER_BASE_URL")
+            api_key=os.getenv("OPENROUTER_API_KEY"),
+            base_url=os.getenv("OPENROUTER_BASE_URL")
         )
         self.logger = getLogger("llm_service")
-        print(os.getenv("OPENAI_API_KEY"),os.getenv("OPENROUTER_BASE_URL"))
 
 
             
