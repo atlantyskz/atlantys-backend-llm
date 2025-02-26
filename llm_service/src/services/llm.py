@@ -26,7 +26,7 @@ class LLMService:
             messages = [{"role": "system", "content": system_prompt}]
             messages.extend(data.get('messages'))
             response = await self.openai.chat.completions.create(
-                model='openai/gpt-4o:extended',
+                model='gpt-4o-mini-2024-07-18',
                 messages=messages
             )
 
