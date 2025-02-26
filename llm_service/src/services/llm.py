@@ -16,6 +16,7 @@ class LLMService:
             api_key=os.getenv("OPENROUTER_API_KEY"),
             base_url=os.getenv("OPENROUTER_BASE_URL")
         )
+        print(os.getenv("OPENROUTER_API_KEY"), os.getenv("OPENROUTER_BASE_URL"))
         self.logger = getLogger("llm_service")
 
 
@@ -25,7 +26,7 @@ class LLMService:
             messages = [{"role": "system", "content": system_prompt}]
             messages.extend(data.get('messages'))
             response = await self.openai.chat.completions.create(
-                model='gpt-4o-mini-2024-07-18',
+                model='openai/gpt-4o:extended',
                 messages=messages
             )
 
