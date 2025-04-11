@@ -39,7 +39,7 @@ async def create_vacancy(
     return response
 
 
-@hr_assistant_router.post('/generate_questions_for_candidate')
+@hr_assistant_router.post('/generate-questions/for-candidate')
 async def generate_candidate_question(
     user_data:dict = Body(...),
     llm_service:LLMService = Depends(get_llm_service)
